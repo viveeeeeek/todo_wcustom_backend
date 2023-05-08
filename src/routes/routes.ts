@@ -32,7 +32,7 @@ router.get("/", async (req: Request, res: Response) => {
 // METHOD FOR DELETE REQUEST
 router.delete("/delete", async (req: Request, res: Response) => {
   const filter = {
-    title: req.body.title,
+    id: req.body.id,
   };
   try {
     const dataItem = await Todo.deleteOne(filter);
