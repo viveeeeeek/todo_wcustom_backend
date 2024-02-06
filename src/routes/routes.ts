@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
 import { Todo } from "../models/todo";
 
-const router = express.Router();
-router.use(express.json());
+const appRouter = express.Router();
+appRouter.use(express.json());
 
 // METHOD FOR POST REQUEST
-router.post("/add", async (req: Request, res: Response) => {
+appRouter.post("/add", async (req: Request, res: Response) => {
   const { title, description } = req.body;
   const dataItem = Todo.set({ title, description });
 
@@ -17,7 +17,7 @@ router.post("/add", async (req: Request, res: Response) => {
 });
 
 // METHOD FOR GET REQUEST
-router.get("/", async (req: Request, res: Response) => {
+appRouter.get("/", async (req: Request, res: Response) => {
   try {
     const dataItem = await Todo.find({});
 
@@ -30,7 +30,7 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 // METHOD FOR DELETE REQUEST
-router.delete("/delete", async (req: Request, res: Response) => {
+appRouter.delete("/delete", async (req: Request, res: Response) => {
   const filter = {
     id: req.body.id,
   };
@@ -45,7 +45,7 @@ router.delete("/delete", async (req: Request, res: Response) => {
 });
 
 // METHOD FOR UPDATE REQUEST
-router.put("/update", async (req: Request, res: Response) => {
+appRouter.put("/update", async (req: Request, res: Response) => {
   const filter = {
     id: req.body.id,
   };
@@ -63,4 +63,4 @@ router.put("/update", async (req: Request, res: Response) => {
   }
 });
 
-export { router };
+export { appRouter as router };
